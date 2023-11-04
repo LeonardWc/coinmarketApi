@@ -36,12 +36,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Core\Services\" />
+    <ProjectReference Include="..\..\src\lwc.coinmarket.api.Core\lwc.coinmarket.api.Core.csproj" />
+    <ProjectReference Include="..\..\src\lwc.coinmarket.api.UseCases\lwc.coinmarket.api.UseCases.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\lwc.coinmarket.api.Core\lwc.coinmarket.api.Core.csproj" />
-    <ProjectReference Include="..\..\src\lwc.coinmarket.api.UseCases\lwc.coinmarket.api.UseCases.csproj" />
+    <Folder Include="Samples\" />
   </ItemGroup>
 
 </Project>
