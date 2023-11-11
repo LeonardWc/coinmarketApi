@@ -37,6 +37,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\lwc.coinmarket.api.Core\lwc.coinmarket.api.Core.csproj" />
+    <ProjectReference Include="..\..\src\lwc.coinmarket.api.Infrastructure\lwc.coinmarket.api.Infrastructure.csproj" />
     <ProjectReference Include="..\..\src\lwc.coinmarket.api.UseCases\lwc.coinmarket.api.UseCases.csproj" />
   </ItemGroup>
 

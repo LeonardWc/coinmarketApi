@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using lwc.coinmarket.api.Core.CoinAggregate;
-using lwc.coinmarket.api.Core.Models;
 using lwc.coinmarket.api.Core.Profiles;
 using lwc.coinmarket.api.Core.Services;
 using Xunit;
