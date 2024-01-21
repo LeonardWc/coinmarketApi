@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using lwc.coinmarket.api.Core.CoinAggregate;
+using lwc.coinmarket.api.Core.CoinAggregate.Events;
 using lwc.coinmarket.api.Core.Models;
 
 namespace lwc.coinmarket.api.Core.Profiles;
@@ -7,7 +8,7 @@ public class CoinProfile : Profile
 {
   public CoinProfile()
   {
-    CreateMap<DatumJson, Coin>()
+    CreateMap<CoinDto, Coin>()
       .ForMember(x => x.NumMarketPairs, y => y.MapFrom(map => map.num_market_pairs))
       .ForMember(x => x.DateAdded, y => y.MapFrom(map => map.date_added))
       .ForMember(x => x.MaxSupply, y => y.MapFrom(map => map.max_supply))
@@ -45,7 +46,10 @@ public class CoinProfile : Profile
       .ReverseMap();
 
     CreateMap<string, Tag>()
-    .ConstructUsing(str => new Tag { Name = str })
-    .ReverseMap();
+      .ConstructUsing(str => new Tag { Name = str })
+      .ReverseMap();
+
+    CreateMap<PriceAddedEvent, CoinPrice>()
+      .ReverseMap();
   }
 }

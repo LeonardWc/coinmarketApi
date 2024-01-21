@@ -2,7 +2,7 @@
 
 namespace lwc.coinmarket.api.Core.Models;
 
-public class DatumJson
+public class CoinDto
 {
   public int id { get; set; }
   public string name { get; set; } = default!;
@@ -41,7 +41,7 @@ public class QuoteJson
 public class CoinJson
 {
   public StatusJson status { get; set; } = default!;
-  public List<DatumJson> data { get; set; } = default!;
+  public List<CoinDto> data { get; set; } = default!;
 }
 
 public class StatusJson

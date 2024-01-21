@@ -17,7 +17,7 @@ public class BinanceClient : IBinanceClient
     _httpClient = httpClient;
   }
 
-  public async Task<IEnumerable<Coin>> GetCoinsAsync(int limit)
+  public async Task<IEnumerable<CoinDto>> GetCoinsAsync(int limit)
   {
     using HttpResponseMessage response = await _httpClient.GetAsync($"/v1/cryptocurrency/listings/latest?start=1&limit={limit}");
     response.EnsureSuccessStatusCode();
@@ -26,11 +26,10 @@ public class BinanceClient : IBinanceClient
     return ExtractCoin(jsonResponse);
   }
 
-  public IEnumerable<Coin> ExtractCoin(string data)
+  public IEnumerable<CoinDto> ExtractCoin(string data)
   {
     var coinJsons = JsonConvert.DeserializeObject<CoinJson>(data);
-    var result = coinJsons?.data.Select(_mapper.Map<Coin>) ?? Enumerable.Empty<Coin>();
-
-    return result;
+    
+    return coinJsons?.data.Select(x => x) ?? Enumerable.Empty<CoinDto>();
   }
 }

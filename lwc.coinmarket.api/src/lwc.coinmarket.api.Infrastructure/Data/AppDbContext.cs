@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Ardalis.SharedKernel;
+using lwc.coinmarket.api.Core.CoinAggregate;
 using lwc.coinmarket.api.Core.ContributorAggregate;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,10 @@ public class AppDbContext : DbContext
   }
 
   public DbSet<Contributor> Contributors => Set<Contributor>();
+
+  public DbSet<Coin> Coins => Set<Coin>();
+
+  public DbSet<CoinPrice> CoinPrices => Set<CoinPrice>();
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {

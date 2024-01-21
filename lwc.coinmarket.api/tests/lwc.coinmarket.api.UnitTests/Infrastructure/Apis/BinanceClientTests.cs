@@ -21,7 +21,7 @@ public class BinanceClientTests
       BaseAddress = new Uri("https://pro-api.coinmarketcap.com")
     };
 
-    client.DefaultRequestHeaders.TryAddWithoutValidation("X-CMC_PRO_API_KEY", "027212e6-ebb2-469f-8008-1ce7333f5895");
+    client.DefaultRequestHeaders.TryAddWithoutValidation("X-CMC_PRO_API_KEY", "");
 
     _binanceClient = new BinanceClient(client, _mapper);
   }
