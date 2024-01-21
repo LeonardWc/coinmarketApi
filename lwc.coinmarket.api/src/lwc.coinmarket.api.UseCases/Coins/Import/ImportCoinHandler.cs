@@ -1,6 +1,7 @@
 ﻿using Ardalis.Result;
 using Ardalis.SharedKernel;
 using lwc.coinmarket.api.Core.Interfaces;
+using lwc.coinmarket.api.Core.Models;
 using lwc.coinmarket.api.UseCases.Coins.Import;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -24,7 +25,7 @@ public class ImportCoinHandler : ICommandHandler<ImportCoinCommand, Result<bool>
   {
     var coins = await _client.GetCoinsAsync(request.numbefOfCoins).ConfigureAwait(false);
 
-    foreach(var coin in coins)
+    foreach (var coin in coins)
     {
        var result =  await _mediator.Send(new CreateCoinCommand(coin));
 

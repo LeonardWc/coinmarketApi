@@ -40,10 +40,14 @@ var mapperConfig = new MapperConfiguration(mc =>
 });
 builder.Services.AddSingleton(mapperConfig.CreateMapper());
 builder.Services.AddScoped<IBinanceClient, BinanceClient>();
+
+var url = builder.Configuration.GetValue<string>("BinanceApi:BaseUrl");
+var key = builder.Configuration.GetValue<string>("BinanceApi:Key");
+
 builder.Services.AddHttpClient<IBinanceClient, BinanceClient>(client =>
 {
-  client.BaseAddress = new Uri("https://pro-api.coinmarketcap.com");
-  client.DefaultRequestHeaders.TryAddWithoutValidation("X-CMC_PRO_API_KEY", "");
+  client.BaseAddress = new Uri(url!);
+  client.DefaultRequestHeaders.TryAddWithoutValidation("X-CMC_PRO_API_KEY", key);
 });
 
 builder.Services.SwaggerDocument(o =>

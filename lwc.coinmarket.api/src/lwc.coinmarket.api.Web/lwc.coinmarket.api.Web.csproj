@@ -8,6 +8,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <UserSecretsId>ab7eb81d-6d5a-42a3-aad5-21fa4c4b002e</UserSecretsId>
     <!--<DocumentationFile>bin\swagger-docs.xml</DocumentationFile>-->
   </PropertyGroup>
   

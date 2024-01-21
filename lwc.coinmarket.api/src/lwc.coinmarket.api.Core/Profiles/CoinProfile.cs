@@ -49,6 +49,9 @@ public class CoinProfile : Profile
       .ConstructUsing(str => new Tag { Name = str })
       .ReverseMap();
 
+    CreateMap<PriceAddedEvent, USD>()
+      .ReverseMap();
+
     CreateMap<PriceAddedEvent, CoinPrice>()
       .ReverseMap();
   }

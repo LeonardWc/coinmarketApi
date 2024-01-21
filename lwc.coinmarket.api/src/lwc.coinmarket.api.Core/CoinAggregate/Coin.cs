@@ -13,7 +13,7 @@ public class Coin : EntityBase, IAggregateRoot
   public double CirculatingSupply { get; set; }
   public double TotalSupply { get; set; }
   public bool InfiniteSupply { get; set; }
-  public Platform Platform { get; set; } = default!;
+  public Platform? Platform { get; set; }
   public int CmcRank { get; set; }
   public double? SelfReportedCirculatingSupply { get; set; }
   public double? SelfReportedMarketCap { get; set; }

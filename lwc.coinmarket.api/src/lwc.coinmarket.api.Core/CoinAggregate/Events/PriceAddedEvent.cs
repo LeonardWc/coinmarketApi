@@ -4,7 +4,6 @@ namespace lwc.coinmarket.api.Core.CoinAggregate.Events;
 
 public class PriceAddedEvent : DomainEventBase
 {
-  public int Id { get; set; }
   public double Price { get; set; }
   public double Volume24h { get; set; }
   public double VolumeChange24h { get; set; }

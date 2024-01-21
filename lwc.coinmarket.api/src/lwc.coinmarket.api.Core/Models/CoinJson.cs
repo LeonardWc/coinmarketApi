@@ -4,7 +4,6 @@ namespace lwc.coinmarket.api.Core.Models;
 
 public class CoinDto
 {
-  public int id { get; set; }
   public string name { get; set; } = default!;
   public string symbol { get; set; } = default!;
   public string slug { get; set; } = default!;
@@ -26,7 +25,6 @@ public class CoinDto
 
 public class PlatformJson
 {
-  public int id { get; set; }
   public string name { get; set; } = default!;
   public string symbol { get; set; } = default!;
   public string slug { get; set; } = default!;

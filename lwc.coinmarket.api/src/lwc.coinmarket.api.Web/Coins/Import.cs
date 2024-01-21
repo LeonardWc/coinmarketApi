@@ -33,12 +33,9 @@ public class Import : Endpoint<ImportCoinRequest, ImportCoinResponse>
     ImportCoinRequest request,
     CancellationToken cancellationToken)
   {
-    var result = await _mediator.Send(new ImportCoinCommand(request.Limit));
+    await _mediator.Send(new ImportCoinCommand(request.Limit));
 
-    if (result.IsSuccess)
-    {
-      Response = new ImportCoinResponse(result.Value);
-      return;
-    }
+    Response = new ImportCoinResponse(true);
+    return;
   }
 }
