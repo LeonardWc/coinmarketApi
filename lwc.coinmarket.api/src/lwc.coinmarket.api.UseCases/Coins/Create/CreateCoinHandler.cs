@@ -38,6 +38,6 @@ public class CreateCoinHandler : ICommandHandler<CreateCoinCommand, Result<int>>
     domainPriceEvent.CoinId = coinId;
     await _mediator.Publish(domainPriceEvent);
     
-    return Result.Success(0);
+    return Result.Success(coin.Id);
   }
 }

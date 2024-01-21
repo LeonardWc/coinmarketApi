@@ -10,6 +10,11 @@ using FastEndpoints.Swagger;
 using FastEndpoints.ApiExplorer;
 using Serilog;
 using Microsoft.EntityFrameworkCore;
+using lwc.coinmarket.api.Core.Interfaces;
+using lwc.coinmarket.api.Infrastructure.Apis;
+using Autofac.Core;
+using AutoMapper;
+using lwc.coinmarket.api.Core.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +32,20 @@ string? connectionString = builder.Configuration.GetConnectionString("DefaultCon
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddFastEndpoints();
-//builder.Services.AddFastEndpointsApiExplorer();
+
+// Auto Mapper Configurations
+var mapperConfig = new MapperConfiguration(mc =>
+{
+  mc.AddProfile(new CoinProfile());
+});
+builder.Services.AddSingleton(mapperConfig.CreateMapper());
+builder.Services.AddScoped<IBinanceClient, BinanceClient>();
+builder.Services.AddHttpClient<IBinanceClient, BinanceClient>(client =>
+{
+  client.BaseAddress = new Uri("https://pro-api.coinmarketcap.com");
+  client.DefaultRequestHeaders.TryAddWithoutValidation("X-CMC_PRO_API_KEY", "");
+});
+
 builder.Services.SwaggerDocument(o =>
 {
   o.ShortSchemaNames = true;

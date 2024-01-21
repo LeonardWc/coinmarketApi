@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using lwc.coinmarket.api.Core.CoinAggregate;
 using lwc.coinmarket.api.Core.Interfaces;
 using lwc.coinmarket.api.Core.Models;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace lwc.coinmarket.api.Infrastructure.Apis;

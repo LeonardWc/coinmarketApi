@@ -3,6 +3,7 @@ using Ardalis.SharedKernel;
 using Autofac;
 using lwc.coinmarket.api.Core.ContributorAggregate;
 using lwc.coinmarket.api.Core.Interfaces;
+using lwc.coinmarket.api.Infrastructure.Apis;
 using lwc.coinmarket.api.Infrastructure.Data;
 using lwc.coinmarket.api.Infrastructure.Data.Queries;
 using lwc.coinmarket.api.Infrastructure.Email;
@@ -132,6 +133,5 @@ public class AutofacInfrastructureModule : Module
     builder.RegisterType<ListContributorsQueryService>()
       .As<IListContributorsQueryService>()
       .InstancePerLifetimeScope();
-
   }
 }
