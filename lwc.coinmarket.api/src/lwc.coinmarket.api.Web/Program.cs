@@ -1,20 +1,23 @@
-﻿using Ardalis.ListStartupServices;
+﻿using System.Collections.Specialized;
+using Ardalis.ListStartupServices;
 using Autofac;
+using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
+using FastEndpoints;
+using FastEndpoints.ApiExplorer;
+using FastEndpoints.Swagger;
 using lwc.coinmarket.api.Core;
+using lwc.coinmarket.api.Core.Interfaces;
+using lwc.coinmarket.api.Core.Profiles;
 using lwc.coinmarket.api.Infrastructure;
+using lwc.coinmarket.api.Infrastructure.Apis;
 using lwc.coinmarket.api.Infrastructure.Data;
 using lwc.coinmarket.api.Web;
-using FastEndpoints;
-using FastEndpoints.Swagger;
-using FastEndpoints.ApiExplorer;
-using Serilog;
+using lwc.coinmarket.api.Web.Extensions;
 using Microsoft.EntityFrameworkCore;
-using lwc.coinmarket.api.Core.Interfaces;
-using lwc.coinmarket.api.Infrastructure.Apis;
-using Autofac.Core;
-using AutoMapper;
-using lwc.coinmarket.api.Core.Profiles;
+using Quartz;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +30,7 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
   options.CheckConsentNeeded = context => true;
   options.MinimumSameSitePolicy = SameSiteMode.None;
 });
+builder.Services.AddQuartzScheduler();
 
 string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));

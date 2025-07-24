@@ -18,6 +18,7 @@
     <PackageReference Include="MediatR" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
     <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="Quartz.AspNetCore" />
   </ItemGroup>
 
 </Project>
