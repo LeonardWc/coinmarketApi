@@ -397,3 +397,4 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 *.txt
+/lwc.coinmarket.api/src/lwc.coinmarket.api.Web/appsettings.json

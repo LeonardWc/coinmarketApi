@@ -5,10 +5,10 @@ using MediatR;
 namespace lwc.coinmarket.api.Web.Coins;
 
 /// <summary>
-/// Create a new Contributor
+/// Import Cryptocurrency
 /// </summary>
 /// <remarks>
-/// Creates a new Contributor given a name.
+/// Cryptocurrency.
 /// </remarks>
 public class Import : Endpoint<ImportCoinRequest, ImportCoinResponse>
 {
@@ -25,7 +25,7 @@ public class Import : Endpoint<ImportCoinRequest, ImportCoinResponse>
     AllowAnonymous();
     Summary(s =>
     {
-      s.ExampleRequest = new ImportCoinRequest { Limit = 100 };
+      s.ExampleRequest = new ImportCoinRequest { Limit = 200 };
     });
   }
 
