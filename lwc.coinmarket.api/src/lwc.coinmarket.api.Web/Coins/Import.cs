@@ -25,7 +25,7 @@ public class Import : Endpoint<ImportCoinRequest, ImportCoinResponse>
     AllowAnonymous();
     Summary(s =>
     {
-      s.ExampleRequest = new ImportCoinRequest { Limit = 200 };
+      s.ExampleRequest = new ImportCoinRequest { Limit = 400 };
     });
   }
 

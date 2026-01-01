@@ -13,7 +13,7 @@ public class ImportCoinHandler : ICommandHandler<ImportCoinCommand, Result<bool>
   private readonly IBinanceClient _client;
   private readonly IMediator _mediator;
   private readonly ILogger<ImportCoinHandler> _logger;
-
+  private readonly string _binanceCoinFilter = "binance-listing";
   public ImportCoinHandler(IBinanceClient client, IMediator mediator, ILogger<ImportCoinHandler> logger)
   {
     _client = client;
@@ -23,11 +23,12 @@ public class ImportCoinHandler : ICommandHandler<ImportCoinCommand, Result<bool>
 
   public async Task<Result<bool>> Handle(ImportCoinCommand request,CancellationToken cancellationToken)
   {
-    var coins = await _client.GetCoinsAsync(request.numbefOfCoins).ConfigureAwait(false);
+    var coins = await _client.GetCoinsAsync(request.numbefOfCoins);
+    var binanceCoins = coins.Where(x => x.tags.Contains(_binanceCoinFilter)).ToList();
 
-    foreach (var coin in coins)
+    foreach (var coin in binanceCoins)
     {
-       var result =  await _mediator.Send(new CreateCoinCommand(coin));
+       var result =  await _mediator.Send(new CreateCoinCommand(coin), cancellationToken);
 
       if(!result.IsSuccess)
       {
@@ -37,4 +38,6 @@ public class ImportCoinHandler : ICommandHandler<ImportCoinCommand, Result<bool>
 
     return true;
   }
+
+
 }
