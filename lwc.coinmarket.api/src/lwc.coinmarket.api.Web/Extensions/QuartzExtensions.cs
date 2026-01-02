@@ -17,8 +17,8 @@ public static class QuartzExtensions
       q.AddTrigger(opts => opts
           .ForJob(jobKey)
           .WithIdentity("ImportJob-trigger")
-          //This Cron interval can be described as "run every 5 minute" (when second is zero)
-          .WithCronSchedule("*/5 * * * *") 
+          //This Cron interval can be described as "run every minute" (when second is zero)
+          .WithCronSchedule("0 0/5 * * * ?")
       );
     });
 
