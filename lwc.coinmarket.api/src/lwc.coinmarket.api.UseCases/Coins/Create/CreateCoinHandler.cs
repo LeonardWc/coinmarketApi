@@ -26,18 +26,18 @@ public class CreateCoinHandler : ICommandHandler<CreateCoinCommand, Result<int>>
     var coin = _mapper.Map<Coin>(request.coin);
 
     var spec = new CoinByNameSpec(coin.Name);
-    var entity = await _repository.FirstOrDefaultAsync(spec, cancellationToken);
+    var entity = await _repository.FirstOrDefaultAsync(spec, cancellationToken).ConfigureAwait(false);
     var coinId = entity?.Id;
 
     if (entity == null)
     {
-      var result = await _repository.AddAsync(coin, cancellationToken);
+      var result = await _repository.AddAsync(coin, cancellationToken).ConfigureAwait(false);
       coinId = result.Id;
     }
 
     var domainPriceEvent = _mapper.Map<PriceAddedEvent>(coin.Quote.USD);
     domainPriceEvent.CoinId = coinId.GetValueOrDefault();
-    await _mediator.Publish(domainPriceEvent);
+    await _mediator.Publish(domainPriceEvent).ConfigureAwait(false);
     
     return Result.Success(coin.Id);
   }

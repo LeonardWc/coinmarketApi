@@ -1,4 +1,4 @@
-﻿using Autofac.Core;
+﻿using lwc.coinmarket.api.Web.Jobs;
 using Quartz;
 using Quartz.AspNetCore;
 
@@ -10,7 +10,16 @@ public static class QuartzExtensions
   {
     services.AddQuartz(q =>
     {
-      // base Quartz scheduler, job and trigger configuration
+      // Just use the name of your job that you created in the Jobs folder.
+      var jobKey = new JobKey("ImportJob");
+      q.AddJob<ImportJob>(opts => opts.WithIdentity(jobKey));
+
+      q.AddTrigger(opts => opts
+          .ForJob(jobKey)
+          .WithIdentity("ImportJob-trigger")
+          //This Cron interval can be described as "run every 5 minute" (when second is zero)
+          .WithCronSchedule("*/5 * * * *") 
+      );
     });
 
     // ASP.NET Core hosting
